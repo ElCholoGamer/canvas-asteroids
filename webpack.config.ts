@@ -6,9 +6,12 @@ import CssMinimizerWebpackPlugin from 'css-minimizer-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import { resolve } from 'path';
+import pkg from './package.json';
 
 const BUILD = resolve(__dirname, 'build');
 const MODE = (process.env.NODE_ENV || 'development') as Configuration['mode'];
+
+const publicPath = MODE === 'development' ? '/' : `/${pkg.name}`;
 
 const config: Configuration = {
 	mode: MODE,
@@ -19,7 +22,7 @@ const config: Configuration = {
 		path: BUILD,
 		filename: 'js/[name].[contenthash:8].js',
 		chunkFilename: 'js/[name].[contenthash:8].chunk.js',
-		publicPath: '/',
+		publicPath,
 	},
 	resolve: {
 		extensions: ['.ts', '.js'],
@@ -55,6 +58,7 @@ const config: Configuration = {
 				loader: 'file-loader',
 				options: {
 					name: 'assets/[folder]/[name].[ext]',
+					publicPath,
 				},
 			},
 		],
