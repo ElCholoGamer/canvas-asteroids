@@ -1,8 +1,10 @@
 import GameObject from '../structures/game-object';
 import Bullet from './bullet';
+import ShootSound from '../assets/sound/shoot.wav';
 
 class Player extends GameObject {
 	private readonly SPRITE = this.game.sprites.get('ship');
+	private readonly SHOOT_SOUND = new Audio(ShootSound);
 	private readonly SPRITE_SIZE = 0.4;
 	private readonly ROTATION_SPEED = 6;
 
@@ -81,6 +83,13 @@ class Player extends GameObject {
 				this.y + Math.sin(radians) * offset,
 				this.angle
 			);
+
+			if (!this.SHOOT_SOUND.paused) {
+				this.SHOOT_SOUND.pause();
+				this.SHOOT_SOUND.currentTime = 0;
+			}
+
+			this.SHOOT_SOUND.play();
 
 			this.canShoot = false;
 			scheduler.schedule(() => {
