@@ -28,8 +28,7 @@ class Player extends GameObject {
 		// Rotate and wrap angle
 		if (right) this.angle += this.ROTATION_SPEED;
 		if (left) this.angle -= this.ROTATION_SPEED;
-
-		this.angle = ((this.angle % 360) + 360) % 360;
+		this.angle = Math.mod(this.angle, 360);
 
 		if (up) {
 			// Apply acceleration to current angle

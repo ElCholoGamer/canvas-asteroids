@@ -5,3 +5,7 @@ Math.degrees = function (radians) {
 Math.radians = function (degrees) {
 	return degrees * (Math.PI / 180);
 };
+
+Math.mod = function (n1, n2) {
+	return ((n1 % n2) + n2) % n2;
+};
