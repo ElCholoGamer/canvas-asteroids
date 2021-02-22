@@ -42,6 +42,7 @@ class Game {
 			ctx.restore();
 		}
 
+		this.controls.tick();
 		requestAnimationFrame(() => this.update());
 	}
 

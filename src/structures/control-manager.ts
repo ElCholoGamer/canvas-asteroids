@@ -1,5 +1,6 @@
 class ControlManager {
-	private readonly keys = new Map<string, boolean>();
+	private readonly keys = new Set<string>();
+	private keyPresses = new Set<string>();
 
 	public constructor() {
 		document.addEventListener('keydown', e => this.handleKeyPress(e));
@@ -7,16 +8,25 @@ class ControlManager {
 		window.addEventListener('blur', () => this.handleBlur());
 	}
 
+	public tick() {
+		this.keyPresses.clear();
+	}
+
 	public isKeyDown(key: string): boolean {
-		return this.keys.get(key) ?? false;
+		return this.keys.has(key);
+	}
+
+	public isKeyPressed(key: string): boolean {
+		return this.keyPresses.has(key);
 	}
 
 	private handleKeyPress(e: KeyboardEvent) {
-		this.keys.set(e.key, true);
+		this.keys.add(e.key);
+		this.keyPresses.add(e.key);
 	}
 
 	private handleKeyUp(e: KeyboardEvent) {
-		this.keys.set(e.key, false);
+		this.keys.delete(e.key);
 	}
 
 	private handleBlur() {

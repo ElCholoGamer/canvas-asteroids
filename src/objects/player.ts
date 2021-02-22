@@ -7,7 +7,6 @@ class Player extends GameObject {
 	private readonly SPRITE_SIZE = 0.4;
 	private readonly ROTATION_SPEED = 6;
 
-	private readonly BULLET_COOLDOWN = 20;
 	private readonly ACCELERATION = 0.2;
 	private readonly FRICTION = 0.02;
 
@@ -16,7 +15,6 @@ class Player extends GameObject {
 
 	private readonly forces = Array(360).fill(0);
 	private angle = -90;
-	private canShoot = true;
 
 	public tick() {
 		const { controls, canvas, scheduler } = this.game;
@@ -25,7 +23,7 @@ class Player extends GameObject {
 		const up = controls.isKeyDown('ArrowUp') || controls.isKeyDown('w');
 		const right = controls.isKeyDown('ArrowRight') || controls.isKeyDown('d');
 		const left = controls.isKeyDown('ArrowLeft') || controls.isKeyDown('a');
-		const space = controls.isKeyDown(' ') || controls.isKeyDown('z');
+		const space = controls.isKeyPressed(' ') || controls.isKeyPressed('z');
 
 		// Rotate and wrap angle
 		if (right) this.angle += this.ROTATION_SPEED;
@@ -73,7 +71,7 @@ class Player extends GameObject {
 		}
 
 		// Shoot
-		if (space && this.canShoot) {
+		if (space) {
 			const offset = 8;
 			const radians = Math.radians(this.angle);
 			this.game.instantiate(
@@ -89,11 +87,6 @@ class Player extends GameObject {
 			}
 
 			this.SHOOT_SOUND.play();
-
-			this.canShoot = false;
-			scheduler.schedule(() => {
-				this.canShoot = true;
-			}, this.BULLET_COOLDOWN);
 		}
 	}
 
