@@ -50,6 +50,13 @@ const config: Configuration = {
 				test: /\.css$/i,
 				use: [MiniCssExtractPlugin.loader, 'css-loader'],
 			},
+			{
+				test: /assets(\\|\/)/i,
+				loader: 'file-loader',
+				options: {
+					name: 'assets/[folder]/[name].[ext]',
+				},
+			},
 		],
 	},
 	plugins: [
