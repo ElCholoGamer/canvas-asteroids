@@ -1,0 +1,15 @@
+{
+	"compilerOptions": {
+		"target": "ES6",
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+		"strictNullChecks": true,
+		"removeComments": true,
+		"moduleResolution": "Node",
+		"sourceMap": true,
+		"noImplicitAny": true
+	},
+	"include": ["src/**/*.ts"],
+	"exclude": ["node_modules", "build"]
+}
