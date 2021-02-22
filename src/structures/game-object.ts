@@ -8,6 +8,10 @@ abstract class GameObject {
 
 	public abstract tick(): void;
 	public abstract render(ctx: CanvasRenderingContext2D): void;
+
+	public destroy() {
+		this.game.destroy(this);
+	}
 }
 
 export default GameObject;

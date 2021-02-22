@@ -10,7 +10,7 @@ class Game {
 	public readonly sprites = new SpriteManager();
 
 	private loaded = false;
-	private readonly _objects: GameObject[] = [];
+	private _objects: GameObject[] = [];
 
 	public constructor(public readonly canvas: HTMLCanvasElement) {}
 
@@ -70,6 +70,10 @@ class Game {
 		this._objects.push(obj);
 
 		return obj;
+	}
+
+	public destroy(obj: GameObject) {
+		this._objects = this._objects.filter(o => o !== obj);
 	}
 
 	public get objects(): ReadonlyArray<GameObject> {
