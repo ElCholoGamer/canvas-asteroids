@@ -6,7 +6,7 @@ class Player extends GameObject {
 	private readonly ROTATION_SPEED = 6;
 
 	private readonly ACCELERATION = 0.25;
-	private readonly FRICTION = 0.98;
+	private readonly FRICTION = 0.02;
 
 	private readonly WIDTH = this.SPRITE.width * this.SPRITE_SIZE;
 	private readonly HEIGHT = this.SPRITE.height * this.SPRITE_SIZE;
@@ -39,7 +39,11 @@ class Player extends GameObject {
 		for (let angle = 0; angle < this.forces.length; angle++) {
 			if (angle !== skip) {
 				// Apply friction to force
-				this.forces[angle] = Math.max(0, this.forces[angle] * this.FRICTION);
+				this.forces[angle] = Math.max(
+					0,
+					this.forces[angle] * (1 - this.FRICTION)
+				);
+
 				if (this.forces[angle] <= 0.1) {
 					continue;
 				}
