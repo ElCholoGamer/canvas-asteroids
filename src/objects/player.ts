@@ -1,10 +1,9 @@
 import GameObject from '../structures/game-object';
 import Bullet from './bullet';
-import ShootSound from '../assets/sound/shoot.wav';
 
 class Player extends GameObject {
 	private readonly SPRITE = this.game.sprites.get('ship');
-	private readonly SHOOT_SOUND = new Audio(ShootSound);
+	private readonly SHOOT_SOUND = this.game.sounds.get('shoot');
 	private readonly SPRITE_SIZE = 0.4;
 	private readonly ROTATION_SPEED = 6;
 
