@@ -5,6 +5,7 @@ import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CssMinimizerWebpackPlugin from 'css-minimizer-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
+import TerserWebpackPlugin from 'terser-webpack-plugin';
 import { resolve } from 'path';
 import pkg from './package.json';
 
@@ -91,7 +92,10 @@ const config: Configuration = {
 			? {}
 			: {
 					minimize: true,
-					minimizer: [new CssMinimizerWebpackPlugin()],
+					minimizer: [
+						new CssMinimizerWebpackPlugin(),
+						new TerserWebpackPlugin(),
+					],
 					splitChunks: {
 						chunks: 'all',
 					},
