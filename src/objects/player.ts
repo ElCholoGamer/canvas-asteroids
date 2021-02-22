@@ -17,7 +17,7 @@ class Player extends GameObject {
 	private angle = -90;
 
 	public tick() {
-		const { controls, canvas, scheduler } = this.game;
+		const { controls, canvas } = this.game;
 
 		// Keyboard input
 		const up = controls.isKeyDown('ArrowUp') || controls.isKeyDown('w');
