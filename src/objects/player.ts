@@ -55,19 +55,18 @@ class Player extends GameObject {
 
 		// Wrap position
 		const { width, height } = canvas;
-		const extraX = (this.WIDTH * Math.SQRT2) / 2;
-		const extraY = (this.HEIGHT * Math.SQRT2) / 2;
+		const halfMaxSize = Math.sqrt(this.WIDTH ** 2 + this.HEIGHT ** 2);
 
-		if (this.x < -extraX) {
-			this.x = width + extraX;
-		} else if (this.x > width + extraX) {
-			this.x = -extraX;
+		if (this.x < -halfMaxSize) {
+			this.x = width + halfMaxSize;
+		} else if (this.x > width + halfMaxSize) {
+			this.x = -halfMaxSize;
 		}
 
-		if (this.y < -extraY) {
-			this.y = height + extraY;
-		} else if (this.y > height + extraY) {
-			this.y = -extraY;
+		if (this.y < -halfMaxSize) {
+			this.y = height + halfMaxSize;
+		} else if (this.y > height + halfMaxSize) {
+			this.y = -halfMaxSize;
 		}
 	}
 
