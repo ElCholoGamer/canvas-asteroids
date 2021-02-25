@@ -1,6 +1,6 @@
 class ControlManager {
 	private readonly keys = new Set<string>();
-	private keyPresses = new Set<string>();
+	private readonly keyPresses = new Set<string>();
 
 	public constructor() {
 		document.addEventListener('keydown', e => this.handleKeyPress(e));
@@ -31,6 +31,7 @@ class ControlManager {
 
 	private handleBlur() {
 		this.keys.clear();
+		this.keyPresses.clear();
 	}
 }
 
