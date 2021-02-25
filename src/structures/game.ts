@@ -27,7 +27,7 @@ class Game {
 			obj.tick();
 		}
 
-		const sorted = [...objects].sort((a, b) => b.layer - a.layer);
+		const sorted = [...objects].sort((a, b) => a.layer - b.layer);
 
 		const ctx = this.canvas.getContext('2d') as CanvasRenderingContext2D;
 		const { width, height } = this.canvas;
