@@ -10,7 +10,7 @@ abstract class GameObject {
 	public abstract render(ctx: CanvasRenderingContext2D): void;
 
 	public destroy() {
-		this.game.destroy(this);
+		this.game.scene.destroy(this);
 	}
 }
 

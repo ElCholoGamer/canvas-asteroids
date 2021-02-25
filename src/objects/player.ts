@@ -73,7 +73,7 @@ class Player extends GameObject {
 		if (space) {
 			const offset = 8;
 			const radians = Math.radians(this.angle);
-			this.game.instantiate(
+			this.game.scene.instantiate(
 				Bullet,
 				this.x + Math.cos(radians) * offset,
 				this.y + Math.sin(radians) * offset,
