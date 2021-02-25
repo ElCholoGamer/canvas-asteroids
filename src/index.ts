@@ -13,9 +13,7 @@ const game = new Game(canvas);
 	await game.sprites.load('ship', ShipSprite);
 	await game.sounds.load('shoot', ShootSound);
 
-	const MenuScene = (await import('./scenes/menu')).default;
-	const GameScene = (await import('./scenes/game')).default;
-	game.loadScene(GameScene);
+	await game.loadScene('game');
 
 	console.log(`Game loaded in ${Date.now() - start}ms`);
 	game.start();

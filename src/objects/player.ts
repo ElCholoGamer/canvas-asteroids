@@ -43,8 +43,6 @@ class Player extends GameObject {
 				this.forces[angle] * (1 - this.FRICTION)
 			);
 
-			if (this.forces[angle] <= 0.1) continue;
-
 			// Apply force
 			const force = this.forces[angle];
 
