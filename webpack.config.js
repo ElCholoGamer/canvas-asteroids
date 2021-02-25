@@ -12,7 +12,7 @@ const pkg = require('./package.json');
 const BUILD = resolve(__dirname, 'build');
 const MODE = process.env.NODE_ENV || 'development';
 
-const publicPath = MODE === 'development' ? '/' : `/${pkg.name}`;
+const publicPath = MODE === 'development' ? '/' : `/${pkg.name}/`;
 
 /** @type {import('webpack').Configuration} */
 const config = {
@@ -24,7 +24,6 @@ const config = {
 		path: BUILD,
 		filename: '[name].[contenthash:8].js',
 		chunkFilename: '[name].[contenthash:8].chunk.js',
-
 		publicPath,
 	},
 	resolve: {

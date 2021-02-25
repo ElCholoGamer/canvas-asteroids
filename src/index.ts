@@ -15,7 +15,7 @@ const game = new Game(canvas);
 
 	const MenuScene = (await import('./scenes/menu')).default;
 	const GameScene = (await import('./scenes/game')).default;
-	await game.loadScene(GameScene);
+	game.loadScene(GameScene);
 
 	console.log(`Game loaded in ${Date.now() - start}ms`);
 	game.start();
