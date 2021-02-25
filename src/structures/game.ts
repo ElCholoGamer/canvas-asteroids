@@ -44,7 +44,7 @@ class Game {
 		requestAnimationFrame(() => this.update());
 	}
 
-	public async loadScene(ctor: new (game: this) => Scene) {
+	public loadScene(ctor: new (game: this) => Scene) {
 		this.scene = new ctor(this);
 		this.scene.start();
 	}
