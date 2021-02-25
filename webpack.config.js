@@ -1,23 +1,24 @@
-import { Configuration, DefinePlugin } from 'webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import { CleanWebpackPlugin } from 'clean-webpack-plugin';
-import CssMinimizerWebpackPlugin from 'css-minimizer-webpack-plugin';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
-import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
-import TerserWebpackPlugin from 'terser-webpack-plugin';
-import { resolve } from 'path';
-import pkg from './package.json';
+const { DefinePlugin } = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const TerserWebpackPlugin = require('terser-webpack-plugin');
+const { resolve } = require('path');
+const pkg = require('./package.json');
 
 const BUILD = resolve(__dirname, 'build');
-const MODE = (process.env.NODE_ENV || 'development') as Configuration['mode'];
+const MODE = process.env.NODE_ENV || 'development';
 
 const publicPath = MODE === 'development' ? '/' : `/${pkg.name}`;
 
-const config: Configuration = {
+/** @type {import('webpack').Configuration} */
+const config = {
 	mode: MODE,
 	entry: resolve(__dirname, 'src/index.ts'),
-	target: 'es5',
+	target: ['web', 'es5'],
 	devtool: 'source-map',
 	output: {
 		path: BUILD,
@@ -96,9 +97,6 @@ const config: Configuration = {
 						new CssMinimizerWebpackPlugin(),
 						new TerserWebpackPlugin(),
 					],
-					splitChunks: {
-						chunks: 'all',
-					},
 			  },
 	devServer: {
 		port: 3000,
@@ -108,4 +106,4 @@ const config: Configuration = {
 	},
 };
 
-export default config;
+module.exports = config;
