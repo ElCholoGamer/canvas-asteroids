@@ -9,8 +9,7 @@
 		"removeComments": true,
 		"moduleResolution": "Node",
 		"sourceMap": true,
-		"noImplicitAny": true,
-		"resolveJsonModule": true
+		"noImplicitAny": true
 	},
 	"include": ["src/**/*.ts"],
 	"exclude": ["node_modules", "build"]
