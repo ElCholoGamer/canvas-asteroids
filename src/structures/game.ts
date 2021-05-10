@@ -6,7 +6,7 @@ import Scene from './scene';
 
 class Game {
 	public readonly scheduler = new Scheduler();
-	public readonly controls = new ControlManager();
+	public readonly controls = new ControlManager(this);
 
 	public readonly sprites = new ResourceManager(Image);
 	public readonly sounds = new ResourceManager(Audio, 'canplaythrough');
